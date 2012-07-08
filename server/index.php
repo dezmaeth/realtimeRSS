@@ -1,7 +1,7 @@
 <?php
 switch ($_POST['getRSS']){
 	case ($_POST['getRSS']==="true"):
-		return "feedData";
+		echo "feedData";
 		break;
 
 	default: header("location:../404.html");
