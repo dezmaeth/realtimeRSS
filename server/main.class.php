@@ -36,13 +36,14 @@ class RSSReader {
 
     function next() {
         $obj = $this -> xml -> channel -> item[$this -> pos++];
-        return array(
+        $arr =  array(
             'title' => (string) $obj -> title,
             'link' => (string) $obj -> link,
             'description' => (string) $obj -> description,
             'content' => (string) $obj -> content_encoded,
-            'pubDate' => strtotime($obj -> pubDate),
+            'pubDate' => strtotime($obj -> pubDate)
         );
+        return json_encode($arr);
     }
 }
 ?>

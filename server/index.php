@@ -1,9 +1,9 @@
 <?php
 switch ($_POST['getRSS']){
-	case is_bool($_POST['getRSS']):
+	case ($_POST['getRSS']==="true"):
 		return "feedData";
-	break;
+		break;
 
-	default: echo("<script>location.href = '/404.html'</script>");
+	default: header("location:../404.html");
 }
 ?>
