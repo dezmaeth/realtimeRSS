@@ -26,8 +26,14 @@ var RSSreader = RSSreader = function () {
 		}
 	}
 
+	var _setListeners = function() {
+		window.setInterval(_self.updateRSS, 10000);
+		dom.feed.onchange = function () {  _self.getRSS(); }
+	}
+
 
 	var _setDom = function() { 
+		dom.feed = document.getElementById('feed');
 		dom.newsWrapper = document.getElementById('news');
 	}
 
@@ -45,25 +51,22 @@ var RSSreader = RSSreader = function () {
 		});
 	}
 
-	this.autoUpdate = function () {
-		window.setInterval(_self.updateRSS, 10000);
-	}
-
 
 	this.updateRSS = function() {
-		_request({ req : 'updateRSS' , feedURL: 'http://feeds.feedburner.com/fayerwayer?format=xml' , pubDate: _self.latestRSS });
+		_request({ req : 'updateRSS' , feedURL: dom.feed.value , pubDate: _self.latestRSS });
 	}
 
-	this.getRSS = function()  { 
-		_request({ req : 'getRSS' , feedURL: 'http://feeds.feedburner.com/fayerwayer?format=xml' });
+	this.getRSS = function()  {
+		$(dom.newsWrapper).html('');
+		_request({ req : 'getRSS' , feedURL: dom.feed.value});
 	}
 
 	// constructor
 	_setDom();
+	_setListeners();
 }
 
 
 
 var RSS = new RSSreader;
 RSS.getRSS();
-RSS.autoUpdate();
