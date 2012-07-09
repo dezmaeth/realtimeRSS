@@ -43,7 +43,7 @@ class RSSReader {
             'content' => (string) $obj -> content_encoded,
             'pubDate' => strtotime($obj -> pubDate)
         );
-        return json_encode($arr);
+        return $arr;
     }
 }
 ?>

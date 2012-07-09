@@ -13,12 +13,14 @@ var RSSreader = RSSreader = function () {
 	}
 
 	var _drawFeed = function(feed) {
+		for (var i in feed) {
       	var news = ['<div class="row">',
       		'<div class="span12 well">',
-      		feed.title,
+      		feed[i].title,
       		'</div></div>'
       		].join('\n');
 		$(dom.newsWrapper).append(news);
+		}
 	}
 
 

@@ -6,8 +6,12 @@ include("main.class.php");
 switch ($_POST['req']){
 
 		case 'getRSS':
+			$reply = array();
 			$rss = new RSSReader($_POST['feedURL']);
-			echo $rss->next();
+			while ($rss->hasNext()) {
+				$reply[] = $rss->next();
+			}
+			echo json_encode($reply);
 		break;
 	}
 
