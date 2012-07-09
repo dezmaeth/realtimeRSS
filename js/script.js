@@ -15,13 +15,13 @@ var RSSreader = RSSreader = function () {
 	}
 
 	var _drawFeed = function(feed) {
-		for (var i in feed) {  	
-	      	var news = ['<div class="row">',
-	      		'<div class="span12 well">',
-	      		feed[i].title, feed[i].pubDate, 
-	      		'</div></div>'
+		for (var i in feed) {
+			var date = new Date(feed[i].pubDate);
+	      	var news = ['<div class="span12 well">',
+	      		feed[i].title, date.format("dd/m/yyyy h:MM:ss"), 
+	      		'</div>'
 	      		].join('\n');
-			$(dom.newsWrapper).prepend(news);
+			$(dom.newsWrapper).append(news);
 			_self.latestRSS = feed[i].pubDate;
 		}
 	}
@@ -46,11 +46,12 @@ var RSSreader = RSSreader = function () {
 	}
 
 	this.autoUpdate = function () {
-		window.setInterval(_self.updateRSS, 1000);
+		window.setInterval(_self.updateRSS, 10000);
 	}
 
 
 	this.updateRSS = function() {
+		$(dom.newsWrapper).html('');
 		_request({ req : 'updateRSS' , feedURL: 'http://news.google.com/?output=rss' , pubDate: _self.latestRSS });
 	}
 
@@ -66,4 +67,4 @@ var RSSreader = RSSreader = function () {
 
 var RSS = new RSSreader;
 RSS.getRSS();
-RSS.autoUpdate();
+//RSS.autoUpdate();

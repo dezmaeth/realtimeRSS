@@ -22,6 +22,10 @@ class RSSReader {
         return $this -> xml -> channel -> title;
     }
 
+    function get_lastbuilddate() {
+        return $this -> xml -> channel -> lastBuildDate;
+    }
+
     function get_link() {
         return $this -> xml -> channel -> link;
     }
