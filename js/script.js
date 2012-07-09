@@ -30,7 +30,7 @@ var RSSreader = RSSreader = function () {
 		$.ajax({ 
 			url: 'server/',
 			type: 'POST',
-			data: { getRSS : true },
+			data: { req : 'getRSS' , feedURL: 'http://news.google.com/?output=rss' },
 			success: function(data) {
 				_parse(data);
 			},
