@@ -51,12 +51,11 @@ var RSSreader = RSSreader = function () {
 
 
 	this.updateRSS = function() {
-		$(dom.newsWrapper).html('');
-		_request({ req : 'updateRSS' , feedURL: 'http://news.google.com/?output=rss' , pubDate: _self.latestRSS });
+		_request({ req : 'updateRSS' , feedURL: 'http://feeds.feedburner.com/fayerwayer?format=xml' , pubDate: _self.latestRSS });
 	}
 
 	this.getRSS = function()  { 
-		_request({ req : 'getRSS' , feedURL: 'http://news.google.com/?output=rss' });
+		_request({ req : 'getRSS' , feedURL: 'http://feeds.feedburner.com/fayerwayer?format=xml' });
 	}
 
 	// constructor
@@ -67,4 +66,4 @@ var RSSreader = RSSreader = function () {
 
 var RSS = new RSSreader;
 RSS.getRSS();
-//RSS.autoUpdate();
+RSS.autoUpdate();

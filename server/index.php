@@ -18,9 +18,9 @@ switch ($_POST['req']){
 			$rss = new RSSReader($_POST['feedURL']);
 			while ($rss->hasNext()) {
 				$feed = $rss->next();
-			//	if (($_POST['pubDate'] - $feed['pubDate']) > 0) { 
+				if (($_POST['pubDate'] - $feed['pubDate']) > 0) { 
 						$reply[] = $feed;
-			//	}
+				}
 			}
 			echo json_encode($reply);
 		break;
