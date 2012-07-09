@@ -16,9 +16,11 @@ var RSSreader = RSSreader = function () {
 
 	var _drawFeed = function(feed) {
 		for (var i in feed) {
+			console.log(feed);
 			var date = new Date(feed[i].pubDate);
 	      	var news = ['<div class="span12 well">',
-	      		feed[i].title, date.format("dd/m/yyyy h:MM:ss"), 
+	      		'<p>',feed[i].title, date.format("dd/m/yyyy h:MM:ss"),'</p>',
+	      		'<p><a href="',feed[i].link,'" target="_blank" >view site</a></p>',
 	      		'</div>'
 	      		].join('\n');
 			$(dom.newsWrapper).append(news);
